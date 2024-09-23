@@ -1,0 +1,27 @@
+Move Library Project
+
+Load function
+Add Movies function
+Remove Movies function
+Display function
+Save and Exit function
+
+
+
+
+
+FOR THE MOVIE FUNCTION
+
+Movie.h         <-- class declaration and attributes, function prototypes (in public)
+
+Movie.cpp       <-- defines function
+    - includes movie.h
+
+
+
+FOR THE MOVIELIB FUNCTION 
+
+Movielib.h      <-- 
+
+Movielib.cpp    <-- defines functions for movielib class
+    - includes movielib.h

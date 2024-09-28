@@ -1,22 +1,33 @@
 #include "movie.h"
 
-/*
-Functions needed
-    // declaration of member function
-        Movie :: Movie(){}
-    // display
-        Movie :: display(){}
-    // save
-        Movie :: save(){}
-*/
+Movie::Movie()
+{
+    title = "";
+    director = "";
+    year = 0;
+    rating = 0.0;
+}
 
-Movie::Movie(string cTitle, string cDirector, int cYear, double cRating) {
+Movie::Movie(string tTitle, string tDirector, int tYear, float tRating)
+{
+    title = tTitle;
+    director = tDirector;
+    year = tYear;
+    rating = tRating;
+};
 
-    this->title=cTitle;
-    this->director=cDirector;
-    this->year=cYear;
-    this->rating=cRating;
+void Movie::display()
+{
+    cout << "\nTITLE: " << title;
+    cout << "\nDIRECTOR: " << director;
+    cout << "\nDATE: " << year;
+    cout << "\nRATING: " << rating << endl;
+};
 
-    
-
+void Movie::save(ofstream &out)
+{
+    out << title << "\n";
+    out << director << "\n";
+    out << year << "\n";
+    out << rating;
 }

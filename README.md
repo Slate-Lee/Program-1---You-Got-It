@@ -1,9 +1,9 @@
 # README - 1310 PROGRAM 1 - Movie Library
 
 ### Group Members: 
-David "Slate" Lee
-Travis Mehaffy
-Tymon Harvey
+David "Slate" Lee,
+Travis Mehaffy,
+Tymon Harvey,
 Shane Brow
 
 ### Project Description:

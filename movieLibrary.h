@@ -11,6 +11,7 @@ private:
 
 public:
     MovieLibrary();
+    ~MovieLibrary();
     void import(string);
     void display();
     void add();

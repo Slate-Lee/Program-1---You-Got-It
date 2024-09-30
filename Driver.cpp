@@ -21,8 +21,9 @@ int main()
         cout << "\n3 - Print";
         cout << "\n4 - Save";
         cout << "\n5 - Exit";
-        
-        do {
+
+        do
+        {
             cout << "\nCHOOSE: 1-5: ";
             cin >> choice;
         } while (choice < 1 || choice > 5);

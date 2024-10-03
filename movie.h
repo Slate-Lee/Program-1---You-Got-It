@@ -1,6 +1,5 @@
 #ifndef MOVIE_H
 #define MOVIE_H
-
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -21,5 +20,10 @@ public:
     void display();
     void save(ofstream&);
 };
+
+// for the testcase
+string getTitle() const {
+    return title;
+}
 
 #endif

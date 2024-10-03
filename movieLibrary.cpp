@@ -7,16 +7,6 @@ MovieLibrary::MovieLibrary()
     numOfMovies = 0;
 };
 
-// TODO DEFINE DESTRUCTOR
-MovieLibrary::~MovieLibrary()
-{
-    for (int i = 0; i < numOfMovies; i++)
-    {
-        delete movies[i];
-    }
-    delete movies;  
-};
-
 void MovieLibrary::import(string fileName)
 {
     // definitions
@@ -83,6 +73,8 @@ void MovieLibrary::import(string fileName)
     {
         cout << "file failed to open";
     }
+
+    
 };
 
 void MovieLibrary::display()
@@ -91,6 +83,15 @@ void MovieLibrary::display()
     {
         movies[i]->display();
     }
+}
+
+Movie* MovieLibrary::findMovie(const string &title) {
+    for (int i = 0; i < numOfMovies; i++) {
+        if (movies[i]->getTitle() == title) {  // used to 
+            return movies[i];
+        }
+    }
+    return nullptr;
 }
 
 void MovieLibrary::add()

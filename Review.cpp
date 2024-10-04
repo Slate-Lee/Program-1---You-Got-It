@@ -45,7 +45,7 @@ void Review::save(ofstream &out)
     }
     else
     {
-        cout << "No review available.";
+        cout << "No movie review available.";
     }
 }
 

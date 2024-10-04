@@ -21,7 +21,7 @@ Review::~Review()
 }
 
 // Display review information
-void Review::display()
+void Review::display() const
 {
     cout << "\nReviewer: " << reviewerName;
     if (reviewText)
@@ -36,7 +36,7 @@ void Review::display()
 }
 
 // Save review information to a file
-void Review::save(ofstream &out)
+void Review::save(ofstream &out) const
 {
     cout << reviewerName << endl;
     if (reviewText)

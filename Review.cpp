@@ -4,7 +4,7 @@
 Review::Review()
 {
     reviewerName = "";
-    reviewText = nullptr; // Initially no review
+    reviewText = nullptr;
 }
 
 // Parametrized constructor
@@ -17,7 +17,7 @@ Review::Review(string rName, string rText)
 // Destructor
 Review::~Review()
 {
-    delete reviewText; // Free the dynamically allocated memory
+    delete reviewText; //Free memory
 }
 
 // Display review information

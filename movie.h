@@ -13,12 +13,15 @@ private:
     string director;
     int year;
     float rating;
+    Review *movieReview;
 
 public:
     Movie();
     Movie(string, string, int, float);
     void display();
     void save(ofstream&);
+    ~Movie();
+    void addReview(string reviewerName, string reviewText);
 };
 
 // for the testcase

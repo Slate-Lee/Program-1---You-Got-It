@@ -15,8 +15,8 @@ public:
     Review();
     Review(string rName, string rText)
     ~Review();
-    void display() const;
-    void save(ofstream &out) const;
+    void display();
+    void save(ofstream &out);
     void setReview(string rText);
 };
 

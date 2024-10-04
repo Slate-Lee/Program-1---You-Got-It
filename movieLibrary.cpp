@@ -124,6 +124,21 @@ void MovieLibrary::add()
     // adds new movie
     newMovies[numOfMovies] = new Movie(rTitle, rDirector, rYear, rRating);
 
+        // Optionally, ask for a review:
+    char reviewChoice;
+    cout << "\nWould you like to add a review for this movie? (y/n): ";
+    cin >> reviewChoice;
+    if (tolower(reviewChoice) == 'y')
+    {
+        string reviewerName, reviewText;
+        cout << "\nReviewer Name: ";
+        cin.ignore();
+        getline(cin, reviewerName);
+        cout << "\nReview Text: ";
+        getline(cin, reviewText);
+        newMovies[numOfMovies]->addReview(reviewerName, reviewText);
+    }
+
     // deletes old movies
     delete[] movies;
 

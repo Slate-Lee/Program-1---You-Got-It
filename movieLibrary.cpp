@@ -124,7 +124,6 @@ void MovieLibrary::add()
     // adds new movie
     newMovies[numOfMovies] = new Movie(rTitle, rDirector, rYear, rRating);
 
-        // Optionally, ask for a review:
     char reviewChoice;
     cout << "\nWould you like to add a review for this movie? (y/n): ";
     cin >> reviewChoice;

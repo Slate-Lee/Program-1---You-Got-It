@@ -49,12 +49,12 @@ void Review::save(ofstream &out)
     }
 }
 
-// Set the review text
+// Set review text
 void Review::setReview(string rText)
 {
     if (reviewText)
     {
-        delete reviewText; // Free previous memory if exists
+        delete reviewText;
     }
-    reviewText = new string(rText); // Allocate new review text
+    reviewText = new string(rText);
 }

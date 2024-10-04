@@ -10,6 +10,7 @@ class Review
 private:
     string reviewerName;
     string *reviewText;
+
 public:
     Review();
     Review(string rName, string rText)

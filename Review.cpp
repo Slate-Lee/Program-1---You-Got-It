@@ -11,13 +11,13 @@ Review::Review()
 Review::Review(string rName, string rText)
 {
     reviewerName = rName;
-    reviewText = new string(rText); // Dynamically allocate review text
+    reviewText = new string(rText);
 }
 
 // Destructor
 Review::~Review()
 {
-    delete reviewText; //Free memory
+    delete reviewText;
 }
 
 // Display review information

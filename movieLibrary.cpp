@@ -85,7 +85,8 @@ void MovieLibrary::display()
     }
 }
 
-Movie* MovieLibrary::findMovie(const string &title) {
+Movie* MovieLibrary::findMovie() 
+{
     for (int i = 0; i < numOfMovies; i++) {
         if (movies[i]->getTitle() == title) {  // used to 
             return movies[i];

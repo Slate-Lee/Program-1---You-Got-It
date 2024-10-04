@@ -4,7 +4,7 @@
 David "Slate" Lee,
 Travis Mehaffy,
 Tymon Harvey,
-Shane Brow
+Shane Brown
 
 ### Project Description:
 This project holds information for movies (title,

@@ -9,7 +9,8 @@ Shane Brow
 ### Project Description:
 This project holds information for movies (title,
 director, release date, IMDB rating) in the data
-class "Movie" and the storage class "MovieLibrary."
+class "Movie" and the storage class "MovieLibrary". 
+Along with reviews being store in the data class "Review"
 The user can access various options from the menu
 which appears when the file is ran. The first option,
 "import," asks the user for a file name, and imports

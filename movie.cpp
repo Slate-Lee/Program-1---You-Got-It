@@ -52,7 +52,7 @@ void Movie::save(ofstream &out)
     }
 }
 
-// Function to add or update a review for the movie
+// Function to add a review for a movie
 void Movie::addReview(string reviewerName, string reviewText)
 {
     if (movieReview)

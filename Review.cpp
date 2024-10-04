@@ -38,7 +38,7 @@ void Review::display()
 // Save review information to a file
 void Review::save(ofstream &out)
 {
-    cout << reviewerName << "\n";
+    cout << reviewerName << endl;
     if (reviewText)
     {
         cout << *reviewText;

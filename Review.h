@@ -9,24 +9,13 @@ class Review
 {
 private:
     string reviewerName;
-    string *reviewText; // Dynamically allocated review text
-
+    string *reviewText;
 public:
-    // Constructors
     Review();
-
-    Review(string rName, string rText);
-
-    // Destructor
+    Review(string rName, string rText)
     ~Review();
-
-    // Function to display review
     void display();
-
-    // Function to save review to a file
     void save(ofstream &out);
-
-    // Function to set the review text
     void setReview(string rText);
 };
 

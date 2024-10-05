@@ -1,13 +1,21 @@
+/*
+    movie.h
+    Header file for the movie class
+*/
+
 #ifndef MOVIE_H
 #define MOVIE_H
+
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "review.h"
+
 using namespace std;
 
+// class definition
 class Movie
 {
-
 private:
     string title;
     string director;
@@ -20,13 +28,8 @@ public:
     Movie(string, string, int, float);
     void display();
     void save(ofstream&);
-    ~Movie();
+    ~Movie(); 
     void addReview(string reviewerName, string reviewText);
 };
-
-// for the testcase
-string getTitle() const {
-    return title;
-}
 
 #endif

@@ -1,8 +1,14 @@
+/*
+    movieLibrary.h
+    Header file for the movie library class
+*/
+
 #ifndef MOVIELIBRARY_H
 #define MOVIELIBRARY_H
 
 #include "movie.h"
 
+// class definition
 class MovieLibrary
 {
 private:
@@ -11,17 +17,11 @@ private:
 
 public:
     MovieLibrary();
-    void import(string);
+    ~MovieLibrary();
+    void import();
     void display();
     void add();
-    void save(string);
-    
-    // to access the private attributes for test case
-    string getTitle();
-    string getDirector();
-    int getYear();
-    float getRating();
-
+    void save();
 };
 
 #endif

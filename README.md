@@ -1,4 +1,5 @@
 # README - 1310 PROGRAM 1 - Movie Library
+https://github.com/Slate-Lee/Program-1---You-Got-It
 
 ### Group Members: 
 David "Slate" Lee,
@@ -8,9 +9,8 @@ Shane Brown
 
 ### Project Description:
 This project holds information for movies (title,
-director, release date, IMDB rating) in the data
-class "Movie" and the storage class "MovieLibrary". 
-Along with reviews being stored in the data class "Review"
+director, release date, IMDB rating, and reviews) in  
+the data class "Movie" and the storage class "MovieLibrary."
 The user can access various options from the menu
 which appears when the file is ran. The first option,
 "import," asks the user for a file name, and imports

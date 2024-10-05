@@ -1,17 +1,22 @@
+/*
+    review.cpp
+    Defines the functions for the review class
+*/
+
 #include "review.h"
 
 // Default constructor
 Review::Review()
 {
     reviewerName = "";
-    reviewText = nullptr;
+    reviewText = nullptr; 
 }
 
 // Parametrized constructor
 Review::Review(string rName, string rText)
 {
     reviewerName = rName;
-    reviewText = new string(rText);
+    reviewText = new string(rText); 
 }
 
 // Destructor
@@ -21,10 +26,10 @@ Review::~Review()
 }
 
 // Display review information
-void Review::display() const
+void Review::display()
 {
     cout << "\nReviewer: " << reviewerName;
-    if (reviewText)
+    if (reviewText && !reviewText->empty())
     {
         cout << "\nReview: " << *reviewText;
     }
@@ -36,25 +41,25 @@ void Review::display() const
 }
 
 // Save review information to a file
-void Review::save(ofstream &out) const
+void Review::save(ofstream &out)
 {
-    cout << reviewerName << endl;
-    if (reviewText)
+    if (reviewText && !reviewText->empty())
     {
-        cout << *reviewText;
+        out << reviewerName << endl;
+        out << *reviewText << endl;
     }
     else
     {
-        cout << "No movie review available.";
+        out << "No review available.";
     }
 }
 
-// Set review text
+// Set the review text
 void Review::setReview(string rText)
 {
     if (reviewText)
     {
         delete reviewText;
     }
-    reviewText = new string(rText);
+    reviewText = new string(rText); 
 }

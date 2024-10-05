@@ -1,3 +1,8 @@
+/*
+    Driver.cpp
+    Has the main function, which has the menu and calls various functions.
+*/
+
 #include <iostream>
 #include "movie.h"
 #include "movieLibrary.h"
@@ -16,6 +21,7 @@ int main()
 
     do
     {
+        // menu options
         cout << "\n1 - Import";
         cout << "\n2 - Add";
         cout << "\n3 - Print";
@@ -26,15 +32,16 @@ int main()
         {
             cout << "\nCHOOSE: 1-5: ";
             cin >> choice;
+            if (choice < 1 || choice > 5) {
+                cout << endl << "Invalid choice." << endl;
+            }
+
         } while (choice < 1 || choice > 5);
 
         switch (choice)
         {
         case 1:
-            cout << "\nType name of file to import: ";
-            cin.ignore();
-            getline(cin, fileName);
-            myLibrary.import(fileName);
+            myLibrary.import();
             break;
         case 2:
             myLibrary.add();
@@ -43,12 +50,12 @@ int main()
             myLibrary.display();
             break;
         case 4:
-            cout << "\nType name of file to create or overwrite: ";
-            cin >> fileName;
-            myLibrary.save(fileName);
+            myLibrary.save();
             break;
         }
     } while (choice != 5);
+
+    cout << endl << "Bye!" << endl;
 
     return 0;
 }

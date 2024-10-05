@@ -1,3 +1,8 @@
+/*
+    movie.cpp
+    Defines the functions for the movie class
+*/
+
 #include "movie.h"
 
 // Default constructor
@@ -7,7 +12,7 @@ Movie::Movie()
     director = "";
     year = 0;
     rating = 0.0;
-    movieReview = nullptr;
+    movieReview = nullptr; // Initialize review to nullptr
 }
 
 // Parametrized constructor
@@ -17,7 +22,7 @@ Movie::Movie(string tTitle, string tDirector, int tYear, float tRating)
     director = tDirector;
     year = tYear;
     rating = tRating;
-    movieReview = nullptr;
+    movieReview = nullptr; // Initialize review to nullptr
 }
 
 // Destructor to free dynamically allocated Review
@@ -46,18 +51,19 @@ void Movie::save(ofstream &out)
     out << director << "\n";
     out << year << "\n";
     out << rating << "\n";
+
     if (movieReview)
     {
-        movieReview->save(out);
+        movieReview->save(out); // Save the review if it exists
     }
 }
 
-// Function to add a review for a movie
+// Function to add or update a review for the movie
 void Movie::addReview(string reviewerName, string reviewText)
 {
     if (movieReview)
     {
-        delete movieReview;
+        delete movieReview; // Delete the old review if it exists
     }
-    movieReview = new Review(reviewerName, reviewText);
+    movieReview = new Review(reviewerName, reviewText); // Create a new review
 }

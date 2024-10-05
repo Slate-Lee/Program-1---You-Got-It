@@ -1,10 +1,17 @@
+/*
+    review.h
+    Header file for the review class
+*/
+
 #ifndef REVIEW_H
 #define REVIEW_H
 
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
+// class definition
 class Review
 {
 private:
@@ -13,10 +20,10 @@ private:
 
 public:
     Review();
-    Review(string rName, string rText)
+    Review(string rName, string rText);
     ~Review();
-    void display() const;
-    void save(ofstream &out) const;
+    void display();
+    void save(ofstream &out);
     void setReview(string rText);
 };
 

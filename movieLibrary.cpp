@@ -1,3 +1,8 @@
+/*
+    movieLibrary.cpp
+    Defines the functions for the movie library class
+*/
+
 #include "movieLibrary.h"
 #include <fstream>
 
@@ -7,92 +12,130 @@ MovieLibrary::MovieLibrary()
     numOfMovies = 0;
 };
 
-void MovieLibrary::import(string fileName)
+// Destructor
+MovieLibrary::~MovieLibrary()
+{
+    for (int i = 0; i < numOfMovies; i++)
+    {
+        delete movies[i];
+    }
+    delete movies;
+};
+
+void MovieLibrary::import()
 {
     // definitions
     ifstream myFile;
     string line;
+    string fileName;
 
     string rTitle;
     string rDirector;
     int rYear;
     float rRating;
 
+    string reviewerName, reviewText;
+
     int tempCount = 0;
+    
+    cin.ignore();
 
-    // opens file
-    myFile.open(fileName, ios::in);
-    if (myFile.is_open())
+    if (numOfMovies < 1)
     {
-        // first loop which counts the number of lines
-        while (!myFile.eof())
+        cout << "\nType name of file to import: ";
+        getline(cin, fileName);
+        
+        // opens file
+        myFile.open(fileName, ios::in);
+        if (myFile.is_open())
         {
-            getline(myFile, line); // title
-            getline(myFile, line); // director
-            myFile >> rYear;       // year
-            myFile >> rRating;     // rating
-            myFile.ignore();
+            // first loop which counts the number of lines
+            while (!myFile.eof())
+            {
+                // goes through lines to get the following:
+                getline(myFile, rTitle);    // title
+                getline(myFile, rDirector); // director
+                myFile >> rYear;            // year
+                myFile >> rRating;          // rating
+                myFile.ignore();
 
-            tempCount++;
+                // skips the review if it exists
+                getline(myFile, line);
+
+                if (line != "")
+                {
+                    getline(myFile, line);
+                    myFile.ignore();
+                }
+
+                tempCount++;
+            }
+
+            // dynamically allocates array to number of movies within file
+            movies = new Movie *[tempCount];
+
+            // resets the seeker
+            myFile.clear();
+            myFile.seekg(0, ios::beg); // https://www.geeksforgeeks.org/file-handling-c-classes/
+
+            tempCount = 0;
+
+            // second loops which reads the lines into the object
+            while (!(myFile.eof()))
+            {
+                getline(myFile, rTitle);    // title
+                getline(myFile, rDirector); // director
+                myFile >> rYear;            // year
+                myFile >> rRating;          // rating
+                myFile.ignore();
+
+                movies[tempCount] = new Movie(rTitle, rDirector, rYear, rRating);
+
+                getline(myFile, reviewerName);
+
+                if (reviewerName != "")
+                {
+                    getline(myFile, reviewText);
+                    myFile.ignore();
+                    movies[tempCount]->addReview(reviewerName, reviewText);
+                }
+
+                // counts the number of objects
+                tempCount++;
+            }
+
+            myFile.close();
+
+            cout << endl
+                << fileName << " successfully loaded with " << tempCount << " movies.\n";
+
+            numOfMovies = tempCount;
         }
-
-        // dynamically allocates array to number of movies within file
-        movies = new Movie *[tempCount];
-
-        // resets the seeker
-        myFile.clear();
-        myFile.seekg(0, ios::beg); // https://www.geeksforgeeks.org/file-handling-c-classes/
-        tempCount = 0;
-
-        // second loops which reads the lines into the object
-        while (!myFile.eof())
+        else
         {
-            getline(myFile, line); // title
-            rTitle = line;
-            getline(myFile, line); // director
-            rDirector = line;
-            myFile >> rYear;   // year
-            myFile >> rRating; // rating
-            myFile.ignore();
-
-            // creates new movie object
-            movies[tempCount] = new Movie(rTitle, rDirector, rYear, rRating);
-
-            // counts the number of objects
-            tempCount++;
+            cout << "File failed to open." << endl;
         }
-
-        myFile.close();
-
-        cout << endl
-            << fileName << " successfully loaded with " << tempCount << " movies.\n";
-
-        numOfMovies = tempCount;
     }
     else
     {
-        cout << "file failed to open";
+        cout << endl << "There are already movies added or imported. Please try again when there are no movies added yet." << endl;
     }
-
-    
 };
 
 void MovieLibrary::display()
 {
-    for (int i = 0; i < numOfMovies; i++)
+    if (numOfMovies > 0)
     {
-        movies[i]->display();
-    }
-}
-
-Movie* MovieLibrary::findMovie() 
-{
-    for (int i = 0; i < numOfMovies; i++) {
-        if (movies[i]->getTitle() == title) {  // used to 
-            return movies[i];
+        for (int i = 0; i < numOfMovies; i++)
+        {
+            movies[i]->display();
         }
     }
-    return nullptr;
+    else
+    {
+        cout << endl
+            << "There are no movies loaded. Please import or add first." << endl;
+    }
 }
 
 void MovieLibrary::add()
@@ -125,20 +168,18 @@ void MovieLibrary::add()
     // adds new movie
     newMovies[numOfMovies] = new Movie(rTitle, rDirector, rYear, rRating);
 
-    // adds review
+    // Optionally, ask for a review:
     char reviewChoice;
     cout << "\nWould you like to add a review for this movie? (y/n): ";
     cin >> reviewChoice;
     if (tolower(reviewChoice) == 'y')
     {
         string reviewerName, reviewText;
-	    
         cout << "\nReviewer Name: ";
         cin.ignore();
-        getline(cin, reviewerName); 
+        getline(cin, reviewerName);
         cout << "\nReview Text: ";
         getline(cin, reviewText);
-	    
         newMovies[numOfMovies]->addReview(reviewerName, reviewText);
     }
 
@@ -151,22 +192,38 @@ void MovieLibrary::add()
     numOfMovies++;
 }
 
-void MovieLibrary::save(string fileName)
+void MovieLibrary::save()
 {
     ofstream outFile;
+    string fileName;
+    string target = ".txt";
 
-    outFile.open(fileName, ios::out);
-	if (outFile.is_open())
-	{
-        for (int i = 0; i < numOfMovies; i++)
+    // checks if there are movies in loading
+    if (numOfMovies > 0)
+    {
+        cin.ignore();
+
+        cout << endl << "Type a file name (with '.txt') to create or overwrite: ";
+        getline(cin, fileName);
+
+        outFile.open(fileName, ios::out);
+        if (outFile.is_open())
         {
-            movies[i]->save(outFile);
-            if (i < numOfMovies-1)
-                outFile << endl;
+            for (int i = 0; i < numOfMovies; i++)
+            {
+                movies[i]->save(outFile);
+                if (i < numOfMovies - 1)
+                    outFile << endl;
+            }
+        }
+        else
+        {
+            cout << "Failed to open file." << endl;
         }
     }
-    else
+    else 
     {
-        cout << "failed to open file";
+        cout << endl << "There are no movies to save. Please add or import movies then try to save again." << endl;
     }
+
 }
